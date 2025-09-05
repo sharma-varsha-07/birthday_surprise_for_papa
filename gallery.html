@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papa's Birthday Memories 💖</title>
+  <style>
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:linear-gradient(135deg,#ff9a9e,#fecfef,#fad0c4);
+      min-height:100vh;
+      text-align:center;
+    }
+    header{
+      padding:40px 20px;
+      color:#fff;
+      background:rgba(0,0,0,0.3);
+      backdrop-filter:blur(5px);
+    }
+    header h1{
+      font-size:50px;
+      margin:0;
+      text-shadow:2px 2px 8px rgba(0,0,0,0.6);
+    }
+    header p{
+      font-size:20px;
+      margin-top:10px;
+    }
+
+    /* Gallery Grid */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+      padding:40px;
+    }
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius:15px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      background:#fff;
+      transform:translateY(20px);
+      opacity:0;
+      animation:fadeInUp 0.8s forwards;
+    }
+    @keyframes fadeInUp{
+      to{transform:translateY(0);opacity:1;}
+    }
+    .card img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.4s ease;
+      cursor:pointer;
+    }
+    .card:hover img{
+      transform:scale(1.1);
+    }
+    .caption{
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:12px;
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,0.7));
+      color:#fff;
+      font-size:16px;
+      font-weight:500;
+      opacity:0;
+      transition:0.3s;
+    }
+    .card:hover .caption{
+      opacity:1;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:rgba(0,0,0,0.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      visibility:hidden;
+      transition:0.3s;
+      z-index:999;
+    }
+    .lightbox.active{
+      opacity:1;
+      visibility:visible;
+    }
+    .lightbox img{
+      max-width:90%;
+      max-height:80%;
+      border-radius:15px;
+      box-shadow:0 6px 20px rgba(255,255,255,0.4);
+    }
+    .close-btn{
+      position:absolute;
+      top:20px;right:30px;
+      font-size:30px;
+      color:#fff;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎉 Happy Birthday Papa 🎉</h1>
+    <p>Here are our 15 special memories together ❤️</p>
+  </header>
+
+  <div class="gallery">
+    <div class="card"><img src="p11.jpeg" alt=""><div class="caption">My Hero Papa 💖</div></div>
+    <div class="card"><img src="p2.jpeg" alt=""><div class="caption">Family Moments ❤️</div></div>
+    <div class="card"><img src="p3.jpeg" alt=""><div class="caption">Smiles Together 😊</div></div>
+    <div class="card"><img src="p4.jpeg" alt=""><div class="caption">Unforgettable Day 🌸</div></div>
+    <div class="card"><img src="p5.jpeg" alt=""><div class="caption">Papa’s Love 💕</div></div>
+    <div class="card"><img src="p6.jpeg" alt=""><div class="caption">Memories Forever 🌟</div></div>
+    <div class="card"><img src="p7.jpeg" alt=""><div class="caption">Joyful Times 😍</div></div>
+    <div class="card"><img src="p8.jpeg" alt=""><div class="caption">Golden moment 🤝</div></div>
+    <div class="card"><img src="p9.jpeg" alt=""><div class="caption">Special Bond 🥰</div></div>
+    <div class="card"><img src="p10.jpeg" alt=""><div class="caption">Cherished Days 🌺</div></div>
+    <div class="card"><img src="papa.jpeg" alt=""><div class="caption">Happy Vibes 🎊</div></div>
+    <div class="card"><img src="p12.jpeg" alt=""><div class="caption">Hero ✨</div></div>
+    <div class="card"><img src="p13.jpeg" alt=""><div class="caption">Unbreakable Bond 💞</div></div>
+    <div class="card"><img src="p14.jpeg" alt=""><div class="caption">Celebration Together 🎂</div></div>
+    <div class="card"><img src="p15.jpeg" alt=""><div class="caption">Forever Grateful 🙏</div></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    const galleryImages=document.querySelectorAll(".card img");
+    const lightbox=document.getElementById("lightbox");
+    const lightboxImg=document.getElementById("lightboxImg");
+    const closeBtn=document.getElementById("closeBtn");
+
+    galleryImages.forEach(img=>{
+      img.addEventListener("click",()=>{
+        lightbox.classList.add("active");
+        lightboxImg.src=img.src;
+      });
+    });
+
+    closeBtn.addEventListener("click",()=>{
+      lightbox.classList.remove("active");
+    });
+
+    lightbox.addEventListener("click",(e)=>{
+      if(e.target===lightbox) lightbox.classList.remove("active");
+    });
+  </script>
+
+</body>
+</html>
